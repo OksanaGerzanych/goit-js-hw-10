@@ -1,7 +1,7 @@
 import './css/styles.css';
 import debounce from 'lodash.debounce'
 import Notiflix from 'notiflix'
-import { fetchCountries } from './fetchCountries';
+import { fetchCountries } from './js/fetchCountries';
 
 const input = document.querySelector('#search-box');
 const countryList = document.querySelector('.country-list');
@@ -43,7 +43,7 @@ function markupCountryList(countries) {
 }
 
 function markupOneCountry(countries) {
-    const markup = countries.map(({ name, capital, population, flags, languages }) =>
+    const markup = countries.map(({ name,capital,population,flags,languages }) =>
         `<li>
         <img src="${flags.svg}" alt="${name}" width="30", height="20">&nbsp<b><BIG>${name}</BIG></b>
         
@@ -52,7 +52,8 @@ function markupOneCountry(countries) {
         <p><b><span>Languages:</b> </span>${Object.values(languages)}</p>
         </li>`).join('');
      
-     countryList.innerHTML = markup;
+    countryList.innerHTML = markup;
+    console.log(markup)
 }
 
 
@@ -60,3 +61,4 @@ function clearPage() {
   countryList.innerHTML = '';
   countryInfo.innerHTML = '';
 }
+
