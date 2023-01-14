@@ -14,6 +14,7 @@ input.addEventListener('input', debounce(searchCountry, DEBOUNCE_DELAY))
 
 function searchCountry(event) {
     const findCountry = event.target.value.trim();
+    console.log(findCountry)
     if (!findCountry) {
         clearPage();
     }
@@ -37,7 +38,7 @@ function searchCountry(event) {
 }
 function markupCountryList(countries) {
     const markup = countries.map(({ name, flags }) => `<li>
-        <img src="${flags.svg}" alt="${name}" width="30", height="15"> ${name}</p>`)
+        <img src="${flags.svg}" alt="${name}" width="30", height="15">&nbsp${name.official}`)
         .join('');
     countryList.innerHTML = markup;
 }
@@ -45,11 +46,11 @@ function markupCountryList(countries) {
 function markupOneCountry(countries) {
     const markup = countries.map(({ name,capital,population,flags,languages }) =>
         `<li>
-        <img src="${flags.svg}" alt="${name}" width="30", height="20">&nbsp<b><BIG>${name}</BIG></b>
+        <img src="${flags.svg}" alt="${name}" width="30", height="20">&nbsp<b><BIG>${name.official}</BIG></b>
         
         <p><b><span>Capital:</b> </span>${capital}</p>
         <p><b><span>Population:</b> </span>${population}</p>
-        <p><b><span>Languages:</b> </span>${Object.values(languages)}</p>
+        <p><b><span>Languages:</b> </span>${Object.values(languages).join(",")}</p>
         </li>`).join('');
      
     countryList.innerHTML = markup;
